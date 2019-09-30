@@ -49,21 +49,15 @@ class CustomServerHandler(http.server.BaseHTTPRequestHandler):
             getvars = self._parse_GET()
 
             response = {
-                'path': self.path,
-                'get_vars': str(getvars)
+                'Nama': 'Alfian Maulana Ibrahim',
+                'NIM': '18217038'
             }
 
             base_path = urlparse(self.path).path
-            if base_path == '/path1':
-                # Do some work
+            if base_path == '/test':
                 response = {
-                    'path': self.path,
-                    'get_vars': str(getvars),
-                    'path1': 'success'
+                    'message': 'success'
                 }
-                pass
-            elif base_path == '/path2':
-                # Do some work
                 pass
 
             self.wfile.write(bytes(json.dumps(response), 'utf-8'))
@@ -107,11 +101,10 @@ class CustomServerHandler(http.server.BaseHTTPRequestHandler):
             }
 
             base_path = urlparse(self.path).path
-            if base_path == '/path1':
-                # Do some work
-                pass
-            elif base_path == '/path2':
-                # Do some work
+            if base_path == '/test':
+                response = {
+                    'message': 'success'
+                }
                 pass
 
             self.wfile.write(bytes(json.dumps(response), 'utf-8'))
