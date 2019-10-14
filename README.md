@@ -1,14 +1,16 @@
 # API Lokasi dan Wilayah
 
 Mata Kuliah II3160 - Teknologi Sistem Terintegrasi\
-Alfian Maulana Ibrahim - 18217038
+Alfian Maulana Ibrahim - 18217038\
+\
+Documentation: (swagger:not yet documented)
 
 ## Setup (on Windows example)
 
 ``` bash
 # install environments
 $ py -3 -m venv venv
-$ . venv/bin/activate
+$ venv\Scripts\activate
 (venv) $ pip install -r requirements.txt
 ```
 
