@@ -1,20 +1,24 @@
 # API Lokasi dan Wilayah
 
-Mata Kuliah II3160 - Teknologi Sistem Terintegrasi
+Mata Kuliah II3160 - Teknologi Sistem Terintegrasi\
 Alfian Maulana Ibrahim - 18217038
 
-## Setup (on Windows)
+## Setup (on Windows example)
 
 ``` bash
 # install environments
-$ virtualenv venv
+$ py -3 -m venv venv
 $ . venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
-## Running locally
+## Running locally (on Windows example)
 
 ``` bash
 # serve at default https://localhost:5000
+$ venv\Scripts\activate
 (venv) $ py main.py
+
+# to leave venv
+(venv) $ deactivate
 ```
