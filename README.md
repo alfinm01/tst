@@ -1,13 +1,20 @@
-# Repository Mata Kuliah II3160 - Teknologi Sistem Terintegrasi
+# API Lokasi dan Wilayah
 
+Mata Kuliah II3160 - Teknologi Sistem Terintegrasi
 Alfian Maulana Ibrahim - 18217038
 
-## Setup
+## Setup (on Windows)
 
 ``` bash
-# serve at localhost:8080
-$ py authwithssl.py
+# install environments
+$ virtualenv venv
+$ . venv/bin/activate
+(venv) $ pip install -r requirements.txt
 ```
 
-## Running
-Jalankan di browser pada https://localhost:8080
+## Running locally
+
+``` bash
+# serve at default localhost:5000
+(venv) $ py main.py
+```
