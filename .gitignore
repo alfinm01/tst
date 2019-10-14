@@ -1,0 +1,6 @@
+# Environments
+venv/
+
+# Flask stuff:
+instance/
+.webassets-cache
