@@ -15,6 +15,6 @@ $ . venv/bin/activate
 ## Running locally
 
 ``` bash
-# serve at default localhost:5000
+# serve at default https://localhost:5000
 (venv) $ py main.py
 ```
