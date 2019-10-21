@@ -1,9 +1,23 @@
-# API Lokasi dan Wilayah
+# Nation and Region API
 
 Mata Kuliah II3160 - Teknologi Sistem Terintegrasi\
 Alfian Maulana Ibrahim - 18217038\
 \
-Documentation: (swagger:not yet documented)
+Documentation: https://app.swaggerhub.com/apis-docs/alfinm01/TST_NationRegionAPI/1.0.0
+
+## List Endpoints
+
+``` bash
+GET '/' = Redirect to API documentation
+GET '/token/<nim>' = Get access token (use STI ITB student NIM)
+GET '/nation' = Get desired nation data crawled from Wikipedia <query = name, language>*
+GET '/id/province' = Get Indonesian provinces data*
+GET '/id/city/<province_id>' = Get Indonesian cities data*
+GET '/id/district/<city_id>' = Get Indonesian districts data*
+GET '/id/village/<district_id>' = Get Indonesian villages data*
+\
+*Access token needed
+```
 
 ## Setup (on Windows example)
 
