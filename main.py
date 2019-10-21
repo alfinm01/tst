@@ -7,9 +7,18 @@ import config
 
 app = Flask(__name__)
 wikipedia = 'wikipedia.org/wiki/'
-default_language = 'id'
+default_language = 'id' # supported on en (not all language supported)
 region_api = 'http://dev.farizdotid.com/api/daerahindonesia/'
 
+
+#
+# Generating JSON responses
+#
+def generate_json_response(status_code, response_object):
+	try:
+		pass
+	except Exception as e:
+		raise e
 
 #
 # Authentication token checking
@@ -27,9 +36,6 @@ def auth_check(token):
 	except Exception as e:
 		raise e
 
-	#finally:
-	#	pass
-
 #
 # Redirect to API documentation
 # <NOT YET DOCUMENTED>
@@ -39,6 +45,7 @@ def documentation():
 	return redirect('https://app.swaggerhub.com/apis-docs/alfinm01/TST_NationRegionAPI/1.0.0', code = 303)
 
 #
+# Get access token
 # Simple NIM encryption (only for STI ITB student)
 #
 @app.route('/token/<nim>')
@@ -50,7 +57,7 @@ def get_token(nim):
 			_nim = b'str(_nim).join(config.SECRET_KEY)'
 			return codecs.encode(_nim, 'hex')
 		else:
-			return Response('NIM forbidden to access', 403)
+			return Response('Forbidden to access (Invalid NIM)', 403)
 
 	except Exception as e:
 		raise e
@@ -82,14 +89,45 @@ def nation():
 			return Response('Nation not found', 404)
 		
 		# Parsing from HTML to JSON
-		_data = _soup.find('table', attrs = {'class' : 'infobox'}).get_text()
+		_table = _soup.find('table', attrs = {'class' : 'infobox'})
+		
+		# Wrong nation query
+		if _table == None:
+			return Response('Nation query is wrong', 404)
 
+		# Iterate every tr
+		_tbody = _table.find('tbody')
+		_data = {}
+		_counter = 0
+		for _tr in _tbody.find_all('tr'):
 
-		# for all tr in table tbody
-		# if tr.th has attr "scope":"row"
-		# then append object
+			# Continue to next iterate
+			if _tr.find('th', attrs = {'scope' : 'row'}) == None:
+				continue
 
-		return _data
+			# Parsing dictionary key
+			if _tr.find('a'):
+				_key = _tr.find('a').string
+			else:
+				if _tr.find('b'):
+					_key = _tr.find('b').string
+				else:
+					if _tr.find('div'):
+						_key = _tr.find('div').string
+					else:
+						_key = 'uncrawled object ' + str(_counter)
+
+			# Parsing dictionary value
+			if _tr.find('td'):
+				_value = _tr.find('td').text
+			else:
+				_value = 'uncrawled object ' + str(_counter)
+
+			# Append dictionary
+			_data[_key] = _value
+			_counter += 1
+
+		return jsonify(_data)
 
 	except Exception as e:
 		raise e
