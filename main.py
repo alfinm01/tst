@@ -2,7 +2,7 @@ from flask import Flask, Response, redirect, request, jsonify
 from bs4 import BeautifulSoup
 import requests
 import codecs
-import config
+#import config
 
 
 app = Flask(__name__)
@@ -36,7 +36,7 @@ region_api = 'http://dev.farizdotid.com/api/daerahindonesia/'
 def auth_check(token):
 	try:
 		token = codecs.decode(token, 'hex').decode('utf-8')
-		if token.endswith(config.SECRET_KEY):
+		if token.endswith('alfin'):
 			if token <= 0 or token >= 100000:
 				return Response('Unauthorized', 401)
 			pass
@@ -64,7 +64,8 @@ def get_token(nim):
 		_nim = int(nim)
 		_nim_check = _nim - 18200000
 		if _nim_check > 0 and _nim_check < 100000:
-			_nim = b'str(_nim).join(config.SECRET_KEY)'
+			_key = 'alfin'
+			_nim = b'str(_nim).join(_alfin)'
 			return codecs.encode(_nim, 'hex')
 		else:
 			return Response('Forbidden to access (Invalid NIM)', 403)
