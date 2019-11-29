@@ -3,6 +3,7 @@
 Mata Kuliah II3160 - Teknologi Sistem Terintegrasi\
 Alfian Maulana Ibrahim - 18217038\
 \
+Deployed API: [https://wiki-region-api.herokuapp.com/{route}](https://wiki-region-api.herokuapp.com)\
 Documentation: https://app.swaggerhub.com/apis-docs/alfinm01/TST_NationRegionAPI/1.0.0
 
 ## List Endpoints
