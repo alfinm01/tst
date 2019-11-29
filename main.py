@@ -11,14 +11,24 @@ default_language = 'id' # supported on en (not all language supported)
 region_api = 'http://dev.farizdotid.com/api/daerahindonesia/'
 
 
-#
-# Generating JSON responses
-#
-def generate_json_response(status_code, response_object):
-	try:
-		pass
-	except Exception as e:
-		raise e
+# #
+# # Generating JSON responses
+# #
+# def generate_json_response(data, status_code):
+# 	try:
+# 		_response = {
+# 			"data": data
+# 		}
+# 		if (status_code == 400):
+# 			_response = {
+# 				"error": {
+# 					"code": status_code,
+# 					"message": data
+# 				}
+# 			}
+# 		return response
+# 	except Exception as e:
+# 		raise e
 
 #
 # Authentication token checking
@@ -69,8 +79,8 @@ def get_token(nim):
 def nation():
 	try:
 		# Authentication check
-		token = request.headers.get('token')
-		auth_check(token)
+		#token = request.headers.get('token')
+		#auth_check(token)
 
 		# Get Wikipedia content
 		_nation = request.args.get('name')
@@ -143,8 +153,8 @@ def nation():
 def province():
 	try:
 		# Authentication check
-		token = request.headers.get('token')
-		auth_check(token)
+		#token = request.headers.get('token')
+		#auth_check(token)
 
 		# Reformat JSON data
 		_result = requests.get(region_api + 'provinsi').json()
@@ -162,8 +172,8 @@ def province():
 def city(province_id):
 	try:
 		# Authentication check
-		token = request.headers.get('token')
-		auth_check(token)
+		#token = request.headers.get('token')
+		#auth_check(token)
 
 		# Reformat JSON data
 		_result = requests.get(region_api + 'provinsi/' + province_id + '/kabupaten').json()
@@ -180,8 +190,8 @@ def city(province_id):
 def district(city_id):
 	try:
 		# Authentication check
-		token = request.headers.get('token')
-		auth_check(token)
+		#token = request.headers.get('token')
+		#auth_check(token)
 
 		# Reformat JSON data
 		_result = requests.get(region_api + 'provinsi/kabupaten/' + city_id + '/kecamatan').json()
@@ -198,8 +208,8 @@ def district(city_id):
 def village(district_id):
 	try:
 		# Authentication check
-		token = request.headers.get('token')
-		auth_check(token)
+		#token = request.headers.get('token')
+		#auth_check(token)
 
 		# Reformat JSON data
 		_result = requests.get(region_api + 'provinsi/kabupaten/kecamatan/' + district_id + '/desa').json()
@@ -211,5 +221,6 @@ def village(district_id):
 
 
 if __name__ == '__main__':
-    app.run(ssl_context = ('cert.pem', 'key.pem'))
+	app.run()
+    #app.run(ssl_context = ('cert.pem', 'key.pem'))
     #app.run(debug = True)
