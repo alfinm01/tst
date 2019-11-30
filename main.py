@@ -126,19 +126,26 @@ def wiki():
 					if _tr.find('div'):
 						_key = _tr.find('div').text
 					else:
-						_key = 'uncrawled object ' + str(_counter)
+						_key = '0uncrawled object ' + str(_counter)
 
 			# Parsing dictionary value
 			if _tr.find('td'):
 				_value = _tr.find('td').text
 			else:
-				_value = 'uncrawled object ' + str(_counter)
+				_value = '0uncrawled object ' + str(_counter)
 
 			# Append dictionary
 			_data[_key] = _value
 			_counter += 1
 
-		return jsonify(_data)
+		_new_data = {}
+
+		# Only get data with alphabetic initial
+		for _key in _data:
+			if _key[0].isalpha():
+				_new_data[_key] = _data[_key]
+
+		return jsonify(_new_data)
 
 	except Exception as e:
 		raise e
@@ -269,6 +276,6 @@ def village(district_id):
 
 
 if __name__ == '__main__':
-	app.run(threaded = True, port = 5000)
+	app.run(threaded = True)
     #app.run(ssl_context = ('cert.pem', 'key.pem'))
     #app.run(debug = True)
