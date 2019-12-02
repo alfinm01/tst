@@ -213,7 +213,6 @@ def province():
 
 		# Reformat JSON data
 		_result = requests.get(region_api + 'provinsi').json()
-		print(_result)
 		_data = _result['semuaprovinsi']
 		return jsonify(_data)
 
